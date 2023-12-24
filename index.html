@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Invitation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #header {
+            background-image: url('large-photo.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            height: 100vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #event-text {
+            font-size: 24px;
+            color: white;
+        }
+
+        #event-input {
+            margin-top: 20px;
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+        }
+
+        #download-button {
+            display: none;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div id="event-text">
+            Du har blitt invitert til et event. Klarer du å gjette hvilket event?
+        </div>
+        <input type="text" id="event-input" placeholder="Skriv inn eventnavn">
+        <button id="download-button">Last ned PDF</button>
+    </div>
+
+    <script>
+        const eventInput = document.getElementById('event-input');
+        const downloadButton = document.getElementById('download-button');
+
+        eventInput.addEventListener('input', () => {
+            if (eventInput.value.toLowerCase() === 'kongen befaler') {
+                downloadButton.style.display = 'block';
+            } else {
+                downloadButton.style.display = 'none';
+            }
+        });
+
+        downloadButton.addEventListener('click', () => {
+            // You can add code here to generate and provide a password-protected PDF for download.
+            // For simplicity, you can link to a sample PDF file with a password.
+            window.location.href = 'sample.pdf'; // Replace with your PDF URL
+        });
+    </script>
+</body>
+</html>
