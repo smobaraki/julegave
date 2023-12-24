@@ -9,22 +9,40 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-        }
-
-        #header {
-            background-image: url('large-photo.jpg'); /* Replace with your image URL */
-            background-size: cover;
-            height: 100vh;
-            text-align: center;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+        }
+
+        #photo-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #large-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #content-container {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent grey background */
+            color: white;
+            text-align: center;
+            padding: 20px;
         }
 
         #event-text {
             font-size: 24px;
-            color: white;
+            margin: 0;
         }
 
         #event-input {
@@ -43,34 +61,55 @@
             border: none;
             cursor: pointer;
         }
+
+        #download-button {
+            display: none;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .center-button {
+        display: block;
+        margin: 20px auto; /* Center horizontally */
+    }
     </style>
 </head>
 <body>
-    <div id="header">
-        <div id="event-text">
-            Du har blitt invitert til et event. Klarer du å gjette hvilket event?
-        </div>
-        <input type="text" id="event-input" placeholder="Skriv inn eventnavn">
-        <button id="download-button">Last ned PDF</button>
+    <div id="photo-container">
+        <img src="./background.png" id="large-photo" alt="Large Photo">
+    </div>
+
+    <div id="content-container">
+        <p id="event-text">
+            Julegaven din i år er billetter til innspillingen av en kjent norsk tv-serie. Klarer du å gjette hvilken?
+        </p>
+        <input type="text" id="event-input" placeholder="Gjett">
+        <button id="download-button">Last ned billettene</button>
     </div>
 
     <script>
-        const eventInput = document.getElementById('event-input');
-        const downloadButton = document.getElementById('download-button');
+         const eventInput = document.getElementById('event-input');
+    const downloadButton = document.getElementById('download-button');
 
-        eventInput.addEventListener('input', () => {
-            if (eventInput.value.toLowerCase() === 'kongen befaler') {
-                downloadButton.style.display = 'block';
-            } else {
-                downloadButton.style.display = 'none';
-            }
-        });
+    eventInput.addEventListener('input', () => {
+        if (eventInput.value.toLowerCase() === 'kongen befaler') {
+            downloadButton.classList.add('center-button');
+            downloadButton.style.display = 'block';
+        } else {
+            downloadButton.classList.remove('center-button');
+            downloadButton.style.display = 'none';
+        }
+    });
 
-        downloadButton.addEventListener('click', () => {
-            // You can add code here to generate and provide a password-protected PDF for download.
-            // For simplicity, you can link to a sample PDF file with a password.
-            window.location.href = 'sample.pdf'; // Replace with your PDF URL
-        });
+    downloadButton.addEventListener('click', () => {
+        // You can add code here to generate and provide a password-protected PDF for download.
+        // For simplicity, you can link to a sample PDF file with a password.
+        window.location.href = 'sample.pdf'; // Replace with your PDF URL
+    });
     </script>
 </body>
 </html>
